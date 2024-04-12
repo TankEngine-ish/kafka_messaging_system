@@ -3,13 +3,16 @@ module github.com/TankEngine-ish/Kafka_Messaging_System
 go 1.22.1
 
 require (
-	github.com/Shopify/sarama v1.29.1 // indirect
+	github.com/Shopify/sarama v1.29.1
+	github.com/gofiber/fiber/v2 v2.52.4
+)
+
+require (
 	github.com/andybalholm/brotli v1.1.0 // indirect
 	github.com/davecgh/go-spew v1.1.1 // indirect
 	github.com/eapache/go-resiliency v1.2.0 // indirect
 	github.com/eapache/go-xerial-snappy v0.0.0-20180814174437-776d5712da21 // indirect
 	github.com/eapache/queue v1.1.0 // indirect
-	github.com/gofiber/fiber/v2 v2.52.4 // indirect
 	github.com/golang/snappy v0.0.3 // indirect
 	github.com/google/uuid v1.6.0 // indirect
 	github.com/hashicorp/go-uuid v1.0.2 // indirect
