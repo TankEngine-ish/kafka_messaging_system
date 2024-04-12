@@ -14,7 +14,7 @@ type Comment struct {
 }
 
 func main() {
-	app := fiber.New()
+	app := fiber.New() // it's the equivalent of creating an app with expressJS
 	api := app.Group("/api/v1")
 	api.Post("/comments", createComment)
 	app.Listen(":3000")
@@ -45,7 +45,8 @@ func PushCommentToQueue(topic string, message []byte) error {
 
 		Topic: topic,
 		Value: sarama.StringEncoder(message),
-	}
+	} // sarama requires both Topic and Value to be set
+
 	partition, offset, err := producer.SendMessage(msg)
 	if err != nil {
 
