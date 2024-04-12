@@ -23,25 +23,25 @@ func main() {
 
 	fmt.Println("consumer started")
 	sigchan := make(chan os.Signal, 1)
-	signal.Notify(sigchain, syscall.SIGINT, syscall.SIGTERM)
+	signal.Notify(sigchan, syscall.SIGINT, syscall.SIGTERM)
 
 	msgCount := 0
 
-	doneCh := make(chan struct{})	
+	doneCh := make(chan struct{})
 
 	go func() {
 
 		for {
 			select {
-			case err := <-consumer.Error():
+			case err := <-consumer.Errors():
 				fmt.Println(err)
-			
-		case msg := <-consumer.Messages():
+
+			case msg := <-consumer.Messages():
 				msgCount++
 				fmt.Printf("Received message Count: %d: | Topic (%s) | Message: (%s)n", msgCount, msg.Topic, string(msg.Value))
-				case <-sigchan:
-					fmt.Println("Interrupt is detected")
-					doneCh <- struct{{}}
+			case <-sigchan:
+				fmt.Println("Interrupt is detected")
+				doneCh <- struct{}{}
 			}
 		}
 	}()
@@ -53,7 +53,7 @@ func main() {
 	}
 }
 
-func connectConsumer(brokersUrl[]string) (sarama.Consumer, error) {
+func connectConsumer(brokersUrl []string) (sarama.Consumer, error) {
 	config := sarama.NewConfig()
 	config.Consumer.Return.Errors = true
 	conn, err := sarama.NewConsumer(brokersUrl, config)
