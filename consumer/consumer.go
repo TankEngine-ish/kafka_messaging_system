@@ -11,7 +11,7 @@ import (
 
 func main() {
 	topic := "comments"
-	worker, err := connectConsumer([]stirng{"localohost:29092"})
+	worker, err := connectConsumer([]string{"localhost:29092"})
 	if err != nil {
 		panic(err)
 	}
@@ -51,4 +51,15 @@ func main() {
 	if err := worker.Close(); err != nil {
 		panic(err)
 	}
+}
+
+func connectConsumer(brokersUrl[]string) (sarama.Consumer, error) {
+	config := sarama.NewConfig()
+	config.Consumer.Return.Errors = true
+	conn, err := sarama.NewConsumer(brokersUrl, config)
+	if err != nil {
+		return nil, err
+	}
+
+	return conn, nil
 }
