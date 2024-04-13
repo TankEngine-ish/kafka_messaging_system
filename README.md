@@ -15,6 +15,12 @@ _Credit to: Finematics_
 On this diagram you don't see Zookeeper but it's getting deprecated in Kafka 4.0.
 I won't go into detail explaining the software - I am far, far, far from an expert.
 
-## 
+## Personal Notes
+
+* This was my first project with Docker Compose but it was already a build .yml file of Kafka and Zookeeper so it didn't take much effort.
+
+* The screenshot above shows my producer (**on the left**), my consumer (**on the right**). The middle terminal is used to manually send a message to test the functionality of the whole thing. As you can see it works and on both sides of the frame there's a confirmation of message received and stored.
+
+![alt text](<assets/Screenshot from 2024-04-13 02-06-04.png>)
 
 
