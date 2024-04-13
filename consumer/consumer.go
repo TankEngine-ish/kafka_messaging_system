@@ -23,7 +23,7 @@ func main() {
 
 	fmt.Println("consumer started")
 	sigchan := make(chan os.Signal, 1)
-	signal.Notify(sigchan, syscall.SIGINT, syscall.SIGTERM)
+	signal.Notify(sigchan, syscall.SIGINT, syscall.SIGTERM) // SIGINT and SIGTERM are system signals that listen for interrupts and termination signals
 
 	msgCount := 0
 
@@ -33,7 +33,7 @@ func main() {
 
 		for {
 			select {
-			case err := <-consumer.Errors():
+			case err := <-consumer.Errors(): // <- is used to receive a value from a channel
 				fmt.Println(err)
 
 			case msg := <-consumer.Messages():
@@ -41,7 +41,7 @@ func main() {
 				fmt.Printf("Received message Count: %d: | Topic (%s) | Message: (%s)n", msgCount, msg.Topic, string(msg.Value))
 			case <-sigchan:
 				fmt.Println("Interrupt is detected")
-				doneCh <- struct{}{}
+				doneCh <- struct{}{} // struct{}{} is an empty struct that gets sent to the doneCh channel so that the msg consumption stops
 			}
 		}
 	}()
