@@ -23,4 +23,4 @@ I won't go into detail explaining the software - I am far, far, far from an expe
 
 ![alt text](<assets/Screenshot from 2024-04-13 02-06-04.png>)
 
-
+* This was my first project in Go using GO Fiber which is like ExpressJS in the context of Golang. They allow you to define routes for handling different HTTP methods among many other functionalities.
